@@ -1,0 +1,24 @@
+# Rust
+/target
+Cargo.lock
+
+# Node.js
+node_modules
+.pnpm-debug.log*
+
+# SvelteKit/Vite
+.svelte-kit
+.vercel
+.netlify
+build
+dist
+
+# Tauri
+src-tauri/target
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Project specific
+test_dir/

@@ -1,0 +1,24 @@
+[package]
+name = "fileflow-engine"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+fileflow-journal = { path = "../journal" }
+fileflow-vfs = { path = "../vfs" }
+fileflow-hyperquery = { path = "../hyperquery" }
+fileflow-flowlang = { path = "../flowlang" }
+tokio = { workspace = true }
+serde = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+log = { workspace = true }
+env_logger = { workspace = true }
+tonic = { workspace = true }
+prost = { workspace = true }
+clap = { workspace = true }
+hex = { workspace = true }
+serde_json = { workspace = true }
+
+[build-dependencies]
+tonic-build = { workspace = true }

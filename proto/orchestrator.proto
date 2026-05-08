@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package fileflow.orchestrator;
+
+service Orchestrator {
+  rpc StartPipeline (StartPipelineRequest) returns (StartPipelineResponse);
+  rpc GetSessionStatus (GetSessionStatusRequest) returns (GetSessionStatusResponse);
+  rpc CommitStep (CommitStepRequest) returns (CommitStepResponse);
+  rpc RollbackStep (RollbackStepRequest) returns (RollbackStepResponse);
+  rpc MaterializeSnapshot (MaterializeSnapshotRequest) returns (MaterializeSnapshotResponse);
+}
+
+message StartPipelineRequest {
+  string pipeline_yaml = 1;
+  string target_dir = 2;
+}
+
+message StartPipelineResponse {
+  string session_id = 1;
+}
+
+message GetSessionStatusRequest {
+  string session_id = 1;
+}
+
+message GetSessionStatusResponse {
+  string status = 1;
+  repeated string logs = 2;
+}
+
+message CommitStepRequest {
+  string session_id = 1;
+}
+
+message CommitStepResponse {
+  bool success = 1;
+}
+
+message RollbackStepRequest {
+  string session_id = 1;
+  string target_hash = 2;
+}
+
+message RollbackStepResponse {
+  bool success = 1;
+}
+
+message MaterializeSnapshotRequest {
+  string session_id = 1;
+  string target_path = 2;
+}
+
+message MaterializeSnapshotResponse {
+  string path = 1;
+}

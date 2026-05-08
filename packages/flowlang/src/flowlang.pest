@@ -1,0 +1,25 @@
+WHITESPACE = _{ " " | "\t" | "\r" | "\n" }
+COMMENT    = _{ "/*" ~ (!"*/" ~ ANY)* ~ "*/" | "//" ~ (!"\n" ~ ANY)* }
+
+program = { SOI ~ pipeline ~ EOI }
+
+pipeline = { "pipeline" ~ string ~ "{" ~ statement* ~ "}" }
+
+statement = { let_stmt | for_stmt | call_stmt }
+
+let_stmt = { "let" ~ ident ~ "=" ~ expression }
+
+for_stmt = { "for" ~ ident ~ "in" ~ expression ~ "{" ~ statement* ~ "}" }
+
+call_stmt = { ident ~ "(" ~ arg_list? ~ ")" ~ ( "->" ~ ident ~ "(" ~ arg_list? ~ ")" )* }
+
+expression = { call_expr | ident | string | number }
+
+call_expr = { ident ~ "(" ~ arg_list? ~ ")" }
+
+arg_list = { arg ~ ( "," ~ arg )* }
+arg = { ( ident ~ "=" )? ~ expression }
+
+ident = @{ ASCII_ALPHA ~ ( ASCII_ALPHANUMERIC | "_" )* }
+string = @{ "\"" ~ ( !("\"") ~ ANY )* ~ "\"" }
+number = @{ ASCII_DIGIT+ }

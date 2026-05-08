@@ -1,0 +1,7 @@
+pipeline "FullDemoPipeline" {
+    let images = query("mime = 'image/jpeg'")
+    for img in images {
+        ai_cull(img, threshold="80%")
+        rename(img, pattern="event-{n}") -> transcode(format="webp")
+    }
+}

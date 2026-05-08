@@ -1,0 +1,15 @@
+[package]
+name = "fileflow-journal"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+blake3 = { workspace = true }
+serde = { workspace = true }
+chrono = { workspace = true }
+ed25519-dalek = { workspace = true }
+cbor4ii = { workspace = true }
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+sqlite = { workspace = true }
+serde_json = { workspace = true }
